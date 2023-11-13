@@ -12,14 +12,20 @@
     style="overflow-x: hidden"
   >
     <iframe
-      src="https://alhokair-ir-2023.vercel.app/ir/board&managment"
-      style="overflow: hidden; width: 100%; padding: 0px; margin-top: -14px;height: 50vh"
+      src="https://awpt.com.sa/investor-relations"
+      style="
+      display: block;
+        overflow: hidden;
+        width: 100%;
+        padding: 0px;
+        margin-top: -14px;
+        height: 50vh;
+      "
       frameborder="0"
       id="iFrameResizer0"
       scrolling="no"
-      
     ></iframe>
-
+  
     <script>
       /*
        * File: iframeResizer.js
@@ -162,6 +168,8 @@
           }
         }
 
+        iFrameListener(window);
+
         function iFrameListener(event) {
           function resizeIFrame() {
             function resize() {
@@ -169,6 +177,7 @@
               setPagePosition(iframeId);
               on("onResized", messageData);
             }
+            console.log(":::::::::::::::::::::" + messageData);
             // settings[id]?.onResized(messageData)
 
             ensureInRange("Height");
@@ -182,7 +191,6 @@
             var height = data[1] ? parseInt(data[1], 10) : 0;
             var iframe = settings[data[0]] && settings[data[0]].iframe;
             var compStyle = getComputedStyle(iframe);
-
             return {
               iframe: iframe,
               id: data[0],
@@ -828,7 +836,6 @@
           } else {
             func();
           }
-          
         }
 
         function trigger(calleeMsg, msg, iframe, id, noResponseWarning) {
@@ -888,11 +895,11 @@
               settings[id].msgTimeout = setTimeout(
                 warning,
                 settings[id].warningTimeout
-                );
-              }
+              );
             }
-            
-            var errorShown = false;
+          }
+
+          var errorShown = false;
 
           id = id || iframe.id;
 
@@ -1466,15 +1473,18 @@
        *
        * Once you have it working, set the log option to false.
        */
+       $(window).on('load', function (e) {
+
       iFrameResize({
         log: true,
         inPageLinks: true,
         enablePublicMethods: true,
-    heightCalculationMethod : "max",
-
+        heightCalculationMethod: "max",
+        autoResize: false,
+        checkOrigin:false,
         onResized: function (messageData) {
-          console.log(messageData)
-
+          alert("Resizing ::::::::::::::::::::");
+          console.log(messageData);
           $("p#callback").html(
             "<b>Frame ID:</b> " +
               messageData.iframe.id +
@@ -1485,19 +1495,15 @@
               " <b>Event type:</b> " +
               messageData.type
           );
-          alert("Resizing ::::::::::::::::::::");
         },
         onMessage: function (messageData) {
+          alert("Message::::::::::::");
           $("p#callback").html(
             "<b>Frame ID:</b> " +
               messageData.iframe.id +
               " <b>Message:</b> " +
               messageData.message
           );
-          alert("Message::::::::::::");
-          document
-            .getElementsByTagName("iframe")[0]
-            .iFrameResizer.sendMessage("Hello back from parent page");
         },
         onClosed: function (id) {
           $("p#callback").html(
@@ -1506,11 +1512,16 @@
           alert("CLOSEL::::::::::::");
         },
       });
-
+    })
       // Manually trigger a resize event after some time (adjust the delay as needed)
       setTimeout(function () {
         window.dispatchEvent(new Event("resize"));
+        const ifss = document.getElementById("iFrameResizer0")
+        console.log(ifss?.contentWindow.innerHeight)
       }, 3000);
-    </script>
+        </script>
+
+    <!--                  *********************************                 -->
+
   </body>
 </html>
