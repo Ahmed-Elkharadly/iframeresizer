@@ -14,7 +14,7 @@
     <iframe
       src="https://awpt.com.sa/investor-relations"
       style="
-      display: block;
+        display: block;
         overflow: hidden;
         width: 100%;
         padding: 0px;
@@ -25,7 +25,7 @@
       id="iFrameResizer0"
       scrolling="no"
     ></iframe>
-  
+
     <script>
       /*
        * File: iframeResizer.js
@@ -1473,7 +1473,6 @@
        *
        * Once you have it working, set the log option to false.
        */
-       (window).on('load', function (e) {
 
       iFrameResize({
         log: true,
@@ -1481,7 +1480,7 @@
         enablePublicMethods: true,
         heightCalculationMethod: "max",
         autoResize: false,
-        checkOrigin:false,
+        checkOrigin: false,
         onResized: function (messageData) {
           alert("Resizing ::::::::::::::::::::");
           console.log(messageData);
@@ -1512,16 +1511,14 @@
           alert("CLOSEL::::::::::::");
         },
       });
-    })
       // Manually trigger a resize event after some time (adjust the delay as needed)
       setTimeout(function () {
         window.dispatchEvent(new Event("resize"));
-        const ifss = document.getElementById("iFrameResizer0")
-        console.log(ifss?.contentWindow.innerHeight)
+        const ifss = document.getElementById("iFrameResizer0");
+        console.log(ifss?.contentWindow.innerHeight);
       }, 3000);
-        </script>
+    </script>
 
     <!--                  *********************************                 -->
-
   </body>
 </html>
