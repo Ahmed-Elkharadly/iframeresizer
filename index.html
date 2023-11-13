@@ -1515,7 +1515,7 @@
       setTimeout(function () {
         window.dispatchEvent(new Event("resize"));
         const ifss = document.getElementById("iFrameResizer0");
-        console.log(ifss?.contentWindow.innerHeight);
+        console.log(ifss?.contentWindow.document.body.scrollHeight);
       }, 3000);
     </script>
 
